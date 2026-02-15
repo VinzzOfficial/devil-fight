@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produk Vinzz</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  min-height:100vh;
+  padding:40px 20px;
+  color:white;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+}
+
+h1{
+  text-align:center;
+  margin-bottom:40px;
+  font-size:32px;
+}
+
+.category{
+  margin:50px 0 20px;
+  font-size:22px;
+  font-weight:600;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+}
+
+.product{
+  backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.08);
+  border-radius:20px;
+  padding:25px;
+  border:1px solid rgba(255,255,255,0.1);
+  transition:0.4s;
+  position:relative;
+}
+
+.product:hover{
+  transform:translateY(-8px);
+  box-shadow:0 0 25px rgba(0,255,255,0.4);
+}
+
+.badge{
+  position:absolute;
+  top:15px;
+  right:15px;
+  background:linear-gradient(45deg,#00f2ff,#00ff88);
+  color:black;
+  padding:5px 12px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.product h3{
+  margin-top:20px;
+  font-size:20px;
+}
+
+.price{
+  margin-top:10px;
+  font-size:26px;
+  font-weight:bold;
+  background:linear-gradient(45deg,#00f2ff,#00ff88);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.btn{
+  margin-top:20px;
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  background:linear-gradient(45deg,#00f2ff,#00ff88);
+  color:black;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.btn:hover{
+  opacity:0.8;
+}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.7);
+  justify-content:center;
+  align-items:center;
+}
+
+.modal-box{
+  background:#111;
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+  width:90%;
+  max-width:400px;
+  border:1px solid rgba(255,255,255,0.1);
+}
+
+.modal-btn{
+  padding:10px 20px;
+  border:none;
+  border-radius:10px;
+  margin:5px;
+  cursor:pointer;
+}
+
+.confirm{
+  background:#00ff88;
+  color:black;
+}
+
+.cancel{
+  background:#ff0055;
+  color:white;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>🔥 Produk Vinzz</h1>
+
+<div class="grid">
+  <div class="product"><div class="badge">Member</div><h3>5 Hari</h3><div class="price">Rp 10K</div><button class="btn" onclick="order('Member 5 Hari','10K')">Order</button></div>
+  <div class="product"><div class="badge">Member</div><h3>30 Hari</h3><div class="price">Rp 15K</div><button class="btn" onclick="order('Member 30 Hari','15K')">Order</button></div>
+  <div class="product"><div class="badge">Member</div><h3>60 Hari</h3><div class="price">Rp 20K</div><button class="btn" onclick="order('Member 60 Hari','20K')">Order</button></div>
+  <div class="product"><div class="badge">Member</div><h3>Permanent</h3><div class="price">Rp 25K</div><button class="btn" onclick="order('Member Permanent','25K')">Order</button></div>
+</div>
+  <h1> </h1>
+<div class="grid">
+  <div class="product"><div class="badge">Reseller</div><h3>1 Bulan</h3><div class="price">Rp 25K</div><button class="btn" onclick="order('Reseller 1 Bulan','25K')">Order</button></div>
+  <div class="product"><div class="badge">Reseller</div><h3>Permanent</h3><div class="price">Rp 30K</div><button class="btn" onclick="order('Reseller Permanent','30K')">Order</button></div>
+</div>
+  <h1></h1>
+<div class="grid">
+  <div class="product"><div class="badge">Mods</div><h3>1 Bulan</h3><div class="price">Rp 35K</div><button class="btn" onclick="order('Mods 1 Bulan','35K')">Order</button></div>
+  <div class="product"><div class="badge">Mods</div><h3>Permanent</h3><div class="price">Rp 45K</div><button class="btn" onclick="order('Mods Permanent','45K')">Order</button></div>
+</div>
+  <h1></h1>
+<div class="grid">
+  <div class="product"><div class="badge">Admin</div><h3>Permanent</h3><div class="price">Rp 55K</div><button class="btn" onclick="order('Admin Permanent','55K')">Order</button></div>
+</div>
+  <h1></h1>
+<div class="grid">
+  <div class="product"><div class="badge">Owner</div><h3>Permanent</h3><div class="price">Rp 65K</div><button class="btn" onclick="order('Owner Permanent','65K')">Order</button></div>
+</div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <h3 id="productName"></h3>
+    <p id="productPrice"></p>
+    <p>Apakah yakin ingin membeli produk ini?</p>
+    <button class="modal-btn confirm" onclick="confirmOrder()">Konfirmasi</button>
+    <button class="modal-btn cancel" onclick="closeModal()">Batal</button>
+  </div>
+</div>
+
+<script>
+let selectedName="";
+let selectedPrice="";
+
+function order(name,price){
+  selectedName=name;
+  selectedPrice=price;
+  document.getElementById("productName").innerText=name;
+  document.getElementById("productPrice").innerText="Harga: Rp "+price;
+  document.getElementById("modal").style.display="flex";
+}
+
+function closeModal(){
+  document.getElementById("modal").style.display="none";
+}
+
+function confirmOrder(){
+  const nomorWA="628XXXXXXXXXX"; // GANTI NOMOR KAMU
+  const pesan=`Halo Admin 👋
+Saya ingin order:
+
+Produk: ${selectedName}
+Harga: Rp ${selectedPrice}
+
+Mohon diproses ya 🙏`;
+  window.location.href="https://wa.me/"+nomorWA+"?text="+encodeURIComponent(pesan);
+}
+</script>
+
+</body>
+</html>
