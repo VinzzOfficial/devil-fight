@@ -1,5 +1,7 @@
 {
-  "latest_version": "1.0.1",
-  "apk_url": "https://devil-fight.web.id/update.apk",
-  "force_update": true
+  "latest_version": "2.0.0",
+  "apk_url": "https://devil-fight.web.id/downloads/devil_fight_v2.0.0.apk",
+  "force_update": true,
+  "release_notes": "Update keamanan dan perbaikan bug",
+  "min_supported_version": "1.5.0"
 }
